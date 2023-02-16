@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-public class GameController {
+public class GameController extends BaseRestController {
 
     @Autowired
     private GameService service;
@@ -41,6 +41,13 @@ public class GameController {
     @DeleteMapping("games/{id}")
     public ResponseEntity<Game> delete(@PathVariable Long id) {
         service.delete(id);
+
+        return ResponseEntity.ok().build();
+    }
+
+    @PatchMapping("games/{id}/vote")
+    public ResponseEntity<Game> update(@PathVariable Long id) {
+        service.vote(id);
 
         return ResponseEntity.ok().build();
     }

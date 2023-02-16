@@ -6,6 +6,7 @@ import com.suzintech.gameawards.service.GameService;
 import com.suzintech.gameawards.service.exception.BusinessException;
 import com.suzintech.gameawards.service.exception.NoContentException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class GameServiceImpl implements GameService {
 
     @Override
     public List<Game> findAll() {
-        return repository.findAll();
+        return repository.findAll(Sort.by(Sort.Direction.DESC, "votes"));
     }
 
     @Override
@@ -52,5 +53,13 @@ public class GameServiceImpl implements GameService {
         var entity = findById(id);
 
         repository.delete(entity);
+    }
+
+    @Override
+    public void vote(Long id) {
+        var entity = findById(id);
+        entity.setVotes(entity.getVotes() + 1);
+
+        update(id, entity);
     }
 }
