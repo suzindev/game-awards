@@ -20,7 +20,7 @@ export function VotesScreen() {
         <View style={styles.container}>
             <Header />
 
-            <ScrollView>
+            <ScrollView style={styles.gameArea}>
                 {gameList.map(game => GameCard(game))}
             </ScrollView>
         </View>

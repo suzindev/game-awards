@@ -12,7 +12,7 @@ const sendingVote = (id: number) => {
     )
 }
 
-export function GameCard(props: gameInterface) {
+export function GameCard(props: gameInterface | any) {
     return (
         <View style={styles.CardContainer}>
             <View>
@@ -23,7 +23,7 @@ export function GameCard(props: gameInterface) {
             </View>
 
             <View style={styles.infoContainer}>
-                <Text style={styles.label}>props.name</Text>
+                <Text style={styles.label}>{props.name}</Text>
                 <Button
                     onPress={() => sendingVote(props.id)}
                     title='Vote'

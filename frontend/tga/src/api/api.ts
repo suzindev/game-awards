@@ -1,4 +1,4 @@
-const baseApiURL = "http://192.168.3.103:8080/api/";
+const baseApiURL = "http://192.168.1.6:8080/api/";
 
 export async function clientGetGames() {
     const response = await fetch(`${baseApiURL}games`)
